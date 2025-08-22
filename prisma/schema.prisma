@@ -1,0 +1,14 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+model Asn {
+  id Int @id @default(autoincrement())
+  nama String
+  nomorPegawai String @unique
+  tmtPns DateTime?
+  riwayatTmtKgb DateTime?
+  riwayatTmtPangkat DateTime?
+  jadwalKgbBerikutnya DateTime?
+  jadwalPangkatBerikutnya DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
