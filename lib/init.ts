@@ -1,7 +1,10 @@
 import { prisma } from "@/lib/prisma";
+
 const g = globalThis as unknown as { __asn_init_done?: boolean };
+
 export async function ensureAsnTable() {
   if (g.__asn_init_done) return;
+
   await prisma.$executeRawUnsafe(`
     CREATE TABLE IF NOT EXISTS "Asn" (
       "id" SERIAL PRIMARY KEY,
@@ -16,5 +19,6 @@ export async function ensureAsnTable() {
       "updatedAt" TIMESTAMP(3) NOT NULL
     );
   `);
+
   g.__asn_init_done = true;
 }
